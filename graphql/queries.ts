@@ -218,3 +218,31 @@ export const DELETE_COURSE = gql`
     }
   }
 `;
+
+export const ASSIGN_INTERVENANT_TO_COURSE = gql`
+  mutation AssignIntervenantToCourse($courseId: Int!, $intervenantId: Int!) {
+    assignIntervenantToCourse(courseId: $courseId, intervenantId: $intervenantId) {
+      id
+      name
+      intervenant {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+export const UNASSIGN_INTERVENANT_FROM_COURSE = gql`
+  mutation UnassignIntervenantFromCourse($courseId: Int!) {
+    unassignIntervenantFromCourse(courseId: $courseId) {
+      id
+      name
+      intervenant {
+        id
+        name
+        email
+      }
+    }
+  }
+`;

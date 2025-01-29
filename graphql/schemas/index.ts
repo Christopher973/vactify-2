@@ -95,6 +95,15 @@ enum Semester {
     ): Course!
 
     deleteCourse(id: Int!): Course!
+
+    assignIntervenantToCourse(
+      courseId: Int!
+      intervenantId: Int!
+    ): Course!
+
+    unassignIntervenantFromCourse(
+      courseId: Int!
+    ): Course!
   }
 `;
 

@@ -51,6 +51,30 @@ const resolvers = {
     deleteCourse: (_, { id }) => prisma.course.delete({
       where: { id }
     }),
+
+    // Mutations Assignation
+    assignIntervenantToCourse: async (_, { courseId, intervenantId }) => {
+      return prisma.course.update({
+        where: { id: courseId },
+        data: {
+          intervenantId: intervenantId
+        },
+        include: {
+          intervenant: true
+        }
+      });
+    },
+    unassignIntervenantFromCourse: async (_, { courseId }) => {
+      return prisma.course.update({
+        where: { id: courseId },
+        data: {
+          intervenantId: null
+        },
+        include: {
+          intervenant: true
+        }
+      });
+    },
   },
 
   // Relations
