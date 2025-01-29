@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  code        String
+  creditUnit  Int
+  hours       Int
+  semester    Semester @default(Y2024_2025)
+
+  intervenant   Intervenant? @relation(fields: [intervenantId], references: [id])
+  intervenantId Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Intervenant {
+  id        Int     @id @default(autoincrement())
+  name      String
+  bio       String?
+  email     String
+  specialty String
+  phone     String
+
+  courses Course[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Semester {
+  Y2024_2025
+  Y2025_2026
+  Y2026_2027
+  Y2027_2028
+  Y2028_2029
+  Y2029_2030
+}
+
+enum Specialty {
+  MATH
+  PHYSICS
+  CHEMISTRY
+  BIOLOGY
+  GEOLOGY
+  COMPUTER_SCIENCE
+  ELECTRONICS
+  MECHANICS
+  CIVIL_ENGINEERING
+  ELECTRICAL_ENGINEERING
+  TELECOMMUNICATION
+  NETWORKING
+  SOFTWARE_ENGINEERING
+}
