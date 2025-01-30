@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { LoginButton } from "./AuthButtons";
+import { LoginButton, LogoutButton } from "./AuthButtons";
 
 export default async function Home() {
   const session = await auth();
@@ -12,7 +12,7 @@ export default async function Home() {
             ? "Authenticated " + session?.user.email
             : "Unauthenticated"}
         </i>
-        <div>{session?.user ? <LoginButton /> : <LoginButton />}</div>
+        <div>{session?.user ? <LogoutButton /> : <LoginButton />}</div>
       </main>
     </>
   );
