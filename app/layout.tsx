@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={geist.className}>
-        <h1>Root layout</h1>
         {children}
         <PrelineScript />
       </body>
