@@ -1,8 +1,8 @@
 import { auth } from "@/lib/auth";
-import SignIn from "./components/auth/SignIn";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { SignOutButton } from "./components/auth/SignOutButton";
+import Login from "./auth/login/page";
 
 export default async function Home() {
   const session = await auth();
@@ -29,7 +29,7 @@ export default async function Home() {
             <SignOutButton />
           </div>
         ) : (
-          <SignIn />
+          <Login />
         )}
       </main>
     </>

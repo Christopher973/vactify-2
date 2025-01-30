@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 
-export default async function Page() {
+export default async function Admin() {
   const session = await auth();
 
   if (session?.user?.role === "admin") {
