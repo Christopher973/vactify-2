@@ -1,3 +1,4 @@
+import { SessionProvider } from "next-auth/react";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={geist.className}>
-        {children}
+        <SessionProvider>{children}</SessionProvider>
         <PrelineScript />
       </body>
     </html>

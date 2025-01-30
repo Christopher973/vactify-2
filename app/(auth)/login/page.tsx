@@ -1,9 +1,19 @@
 "use client";
 
-import { auth } from "@/lib/auth";
-import { signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/intervenants");
+    }
+  }, [session, router]);
   return (
     <>
       <div>
@@ -28,9 +38,12 @@ export default function Login() {
               <button
                 type="button"
                 className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                onClick={() => {
-                  signIn();
-                }}
+                onClick={() =>
+                  signIn("github", {
+                    callbackUrl: "/intervenants",
+                    redirect: true,
+                  })
+                }
               >
                 Se connecter avec...
               </button>

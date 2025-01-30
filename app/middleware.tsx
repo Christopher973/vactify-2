@@ -4,11 +4,22 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const session = await auth();
+  const { pathname } = request.nextUrl;
 
-  // Vérifier si l'utilisateur accède à une route protégée
-  if (request.nextUrl.pathname.startsWith("/(main)")) {
+  // Protection des routes d'authentification
+  if (pathname.includes("/login")) {
+    if (session) {
+      return NextResponse.redirect(new URL("/intervenants", request.url));
+    }
+  }
+
+  // Protection des routes principales
+  if (
+    pathname.includes("/intervenants") ||
+    pathname.includes("/courses") ||
+    pathname.includes("/admin")
+  ) {
     if (!session) {
-      // Rediriger vers la page de connexion
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
@@ -16,12 +27,11 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// Configuration des chemins à protéger
 export const config = {
   matcher: [
-    "/(main)/:path*",
+    "/login",
     "/intervenants/:path*",
     "/courses/:path*",
-    "/admin/:path*",
+    "/dashboard/:path*",
   ],
 };

@@ -57,7 +57,7 @@ export default async function UserIcon() {
                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
                 <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
               </svg>
-              Newsletter
+              Paramètres
             </a>
             <a
               className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -102,7 +102,7 @@ export default async function UserIcon() {
                 <path d="M12 12v9" />
                 <path d="m8 17 4 4 4-4" />
               </svg>
-              Downloads
+              Se déconnecter
             </a>
             <a
               className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -125,7 +125,7 @@ export default async function UserIcon() {
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
-              Team Account
+              Mon compte
             </a>
           </div>
         </div>
