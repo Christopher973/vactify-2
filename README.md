@@ -2,23 +2,57 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Setting up Environment Variables
+
+1. Create a `.env` file in the root directory and add the following variables:
+
+```env
+# Database Configuration
+DATABASE_URL="mysql://root:@localhost:3306/db_name"
+
+# GitHub OAuth Configuration
+AUTH_GITHUB_ID="your_github_client_id"
+AUTH_GITHUB_SECRET="your_github_client_secret"
+
+# NextAuth Secret
+AUTH_SECRET="your_generated_secret"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To get the required values:
+
+- Generate AUTH_SECRET using: `npx auth secret`
+- Get GitHub OAuth credentials from [GitHub Developer Settings](https://github.com/settings/applications/new)
+
+### Installation and Setup
+
+```bash
+# Install dependencies
+pnpm install
+# or
+npm install
+
+# Setup database
+npx prisma migrate dev  # Create database tables
+npx prisma db seed     # Populate with initial data
+
+# Start development server
+pnpm dev
+# or
+npm run dev
+```
+
+Your application will be available at:
+
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- GraphQL API: [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
+
+### Development
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a custom font family.
 
 ## Learn More
 
